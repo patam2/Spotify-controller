@@ -5,6 +5,7 @@ from core import http_sockets, threads, settings
 
 
 class Spotify:
+    #rewrite settings and the self values!!
     def __init__(self):
         self.settings = settings.get_settings()
         self.client_id = self.settings['client_id']
