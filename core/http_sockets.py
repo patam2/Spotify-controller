@@ -2,8 +2,6 @@ import socket
 import ssl
 import json
 
-socket.setdefaulttimeout(5)
-
 
 def CallBack():
     sock = socket.socket()
