@@ -38,7 +38,6 @@ class SocketClient:
         sock.connect((self.host, 443))
         return sock
 
-
     def request(self, method, url, data=None):
         self.socket_sess.sendall(
             str.encode(
@@ -49,7 +48,7 @@ class SocketClient:
 
         data, recv = self.socket_sess.recv(4096).split(b'\r\n\r\n', 1)
 
-        content_length = int(data.split(b'Content-Length: ')[1].split(b'\r\n')[0])
+        content_length = self._get_content_length(data)
         while len(recv) < content_length:
             recv += self.socket_sess.recv(4096)
 
@@ -60,3 +59,10 @@ class SocketClient:
             return json.loads(recv.decode()) if recv else True
         except:
             return False
+
+    def _get_content_length(self, data):
+        data = data.lower()
+        if b'content-length' in data:
+            return int(data.split(b'content-length: ')[1].split(b'\r\n')[0])
+        else:
+            return 0
