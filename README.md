@@ -1,4 +1,4 @@
-# Spotify-controller
+# Spotify-keybinds
 Pause Spotify without having to alt-tab into it.
 
 ## requirements:
