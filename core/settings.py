@@ -1,5 +1,6 @@
 import json
 import os
+from core import kboard
 
 parentdir = os.path.join(os.path.dirname(__file__) + "/../")
 
@@ -12,6 +13,7 @@ def get_settings():
         )
         settings['client_secret'] = input('Client secret: ')
         settings['refresh_token'] = ''
+        settings['keybind'] = kboard.listen_for_hotkey()
         return settings
     else: #settings found
         settings = json.loads(open(f'{parentdir}/settings.json').read())
