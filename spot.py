@@ -3,11 +3,9 @@ from core import spotify
 
 
 spot = spotify.Spotify()
-currently_playing = spot.get_player()['is_playing']
 
 def change_playback():
-    global currently_playing
-    currently_playing = not currently_playing
+    currently_playing = not spot.get_player()['is_playing']
     spot.play_music(currently_playing)
     print('Paused track' if not currently_playing else 'Resuming track')
 

@@ -3,9 +3,8 @@ import webbrowser
 
 from core import http_sockets, threads, settings
 
-
+#todo: error handling and get rid of old & stale websocket sessions
 class Spotify:
-    # rewrite settings and the self values!!
     def __init__(self):
         # Load settings
         self.settings = settings.get_settings()
