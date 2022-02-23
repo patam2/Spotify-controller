@@ -66,7 +66,7 @@ class SocketClient:
             if b"HTTP/1.1 303" in data:
                 return data.split(b"location: ")[1].split(b"\r\nset-cookie")[0]
             try:
-                return json.loads(recv.decode()) if recv else True
+                return json.loads(recv.decode()) if recv else False
             except:
                 return False
         except ConnectionResetError:
