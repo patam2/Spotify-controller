@@ -25,6 +25,7 @@ class Spotify:
         # Get refresh token
         if not self.refresh_token:
             self.token = self._get_refresh_token()
+            self.token = self._refresh_token()
         else:
             self.token = self._refresh_token()
         threads.TokenRefresher(self)
@@ -70,7 +71,10 @@ class Spotify:
 
     # api.spotify.com
     def get_player(self) -> dict:
-        return self.socket_sess.request("GET", "/v1/me/player")
+        return self.socket_sess.request(
+            "GET", 
+            "/v1/me/player"
+        )
 
     def play_music(self, play: bool):
         return self.socket_sess.request(
