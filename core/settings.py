@@ -4,7 +4,7 @@ from core import kboard
 
 parentdir = os.path.join(os.path.dirname(__file__) + "/../")
 
-#todo - write class?
+#todo - write as class?
 def get_settings():
     settings = {}
     if "settings.json" not in os.listdir(parentdir):
@@ -15,9 +15,9 @@ def get_settings():
         settings['refresh_token'] = ''
         settings['keybind'] = kboard.listen_for_hotkey()
         return settings
-    else: #settings found
-        settings = json.loads(open(f'{parentdir}/settings.json').read())
-        return settings
+
+    settings = json.loads(open(f'{parentdir}/settings.json').read())
+    return settings
 
 def save_settings(settings):
     set_file = open(f'{parentdir}/settings.json', 'w')
