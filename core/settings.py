@@ -1,3 +1,4 @@
+import getpass
 import json
 import os
 from core import kboard
@@ -11,7 +12,7 @@ def get_settings():
         settings["client_id"] = input(
             "Create an application @ https://developer.spotify.com/dashboard/applications and provide the following\nClient id: "
         )
-        settings['client_secret'] = input('Client secret: ')
+        settings['client_secret'] = getpass.getpass('Client secret: ')
         settings['refresh_token'] = ''
         settings['keybind_pause'] = kboard.listen_for_hotkey('Press the keys (no enter) you want for the pause/play keybind THEN press ESC: ')
         settings['keybind_skip'] = kboard.listen_for_hotkey('Press the keys (no enter) you want for the skip song keybind THEN press ESC: ')
