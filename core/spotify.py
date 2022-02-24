@@ -3,6 +3,7 @@ import webbrowser
 
 from core import http_sockets, threads, settings
 
+
 #todo: error handling and get rid of old & stale websocket sessions
 class Spotify:
     def __init__(self):
@@ -29,6 +30,9 @@ class Spotify:
         threads.TokenRefresher(self)
 
         # token sess
+        self.create_socket()
+    
+    def create_socket(self):
         self.socket_sess = http_sockets.SocketClient(
             "Bearer " + self.token, "api.spotify.com"
         )

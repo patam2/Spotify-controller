@@ -69,7 +69,7 @@ class SocketClient:
                 return json.loads(recv.decode()) if recv else False
             except:
                 return False
-        except ConnectionResetError:
+        except:
             print("Conn most likely failed; retrying")
             self.__init__(self.token, self.host)
             return self.request(method, url, sent_data)

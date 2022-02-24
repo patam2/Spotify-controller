@@ -3,28 +3,19 @@ class SpotifyPlayer:
         self.Spotify = SpotifyClass
 
     def change_playback(self):
-        try:
-            currently_playing = self.Spotify.get_player()
-            if "device" not in currently_playing:
-                print("Spotify not found")
-                return
-            currently_playing = not currently_playing["is_playing"]
-            self.Spotify.play_music(currently_playing)
-            print("Paused track" if not currently_playing else "Resuming track")
-        except Exception as Error:
-            print(Error, 'happened')
+        self.Spotify.create_socket()
+        currently_playing = self.Spotify.get_player()
+        if "device" not in currently_playing:
+            print("Spotify not found")
+        currently_playing = not currently_playing["is_playing"]
+        self.Spotify.play_music(currently_playing)
+        print("Paused track" if not currently_playing else "Resuming track")
 
     def skip_song(self):
-        try:
-            self.Spotify.skip_song()
-            print('Skipped song')
-        except Exception as Error:
-            print(Error, 'happened')
+        self.Spotify.create_socket()
+        self.Spotify.skip_song()
 
     def previous_song(self):
-        try:
-            self.Spotify.previous_song()
-            print('Skipped to previous song')
-
-        except Exception as Error:
-            print(Error, 'happened')
+        self.Spotify.create_socket()
+        self.Spotify.previous_song()
+        print('Skipped to previous song')
