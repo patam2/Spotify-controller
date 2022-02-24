@@ -46,33 +46,29 @@ class SocketClient:
         return sock
 
     def request(self, method, url, sent_data=None):
-        try:
-            self.socket_sess.sendall(
-                str.encode(
-                    "%s %s HTTP/1.1\r\n%s\r\n%s\r\n\r\n"
-                    % (
-                        method,
-                        url,
-                        self._apply_headers(method, sent_data),
-                        (json.dumps(sent_data) if sent_data else ""),
-                    )
+        self.__init__(self.token, self.host)
+        self.socket_sess.sendall(
+            str.encode(
+                "%s %s HTTP/1.1\r\n%s\r\n%s\r\n\r\n"
+                % (
+                    method,
+                    url,
+                    self._apply_headers(method, sent_data),
+                    (json.dumps(sent_data) if sent_data else ""),
                 )
             )
+        )
 
-            data, recv = self.socket_sess.recv(4096).split(b"\r\n\r\n", 1)
-            content_length = self._get_content_length(data)
-            while len(recv) < content_length:
-                recv += self.socket_sess.recv(4096)
-            if b"HTTP/1.1 303" in data:
-                return data.split(b"location: ")[1].split(b"\r\nset-cookie")[0]
-            try:
-                return json.loads(recv.decode()) if recv else False
-            except:
-                return False
+        data, recv = self.socket_sess.recv(4096).split(b"\r\n\r\n", 1)
+        content_length = self._get_content_length(data)
+        while len(recv) < content_length:
+            recv += self.socket_sess.recv(4096)
+        if b"HTTP/1.1 303" in data:
+            return data.split(b"location: ")[1].split(b"\r\nset-cookie")[0]
+        try:
+            return json.loads(recv.decode()) if recv else False
         except:
-            print("Conn most likely failed; retrying")
-            self.__init__(self.token, self.host)
-            return self.request(method, url, sent_data)
+            return False
 
     def _get_content_length(self, data):
         data = data.lower()

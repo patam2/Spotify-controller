@@ -5,8 +5,9 @@ class SpotifyPlayer:
     def change_playback(self):
         self.Spotify.create_socket()
         currently_playing = self.Spotify.get_player()
-        if "device" not in currently_playing:
+        if isinstance(currently_playing, bool):
             print("Spotify not found")
+            return
         currently_playing = not currently_playing["is_playing"]
         self.Spotify.play_music(currently_playing)
         print("Paused track" if not currently_playing else "Resuming track")
