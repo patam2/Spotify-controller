@@ -15,7 +15,7 @@ def get_settings():
         settings['refresh_token'] = ''
         settings['keybind_pause'] = kboard.listen_for_hotkey('Press the keys (no enter) you want for the pause/play keybind THEN press ESC: ')
         settings['keybind_skip'] = kboard.listen_for_hotkey('Press the keys (no enter) you want for the skip song keybind THEN press ESC: ')
-        settings['keybind_previous'] = kboard.listen_for_hotkey('Press the keys (no enter) you want for the previous song keybind THEN press ESC: ')
+        settings['keybind_previous'] = kboard.listen_for_hotkey('Press the keys (no enter) you want for the previous song keybind THEN press ESC: \n')
         return settings
 
     settings = json.loads(open(f'{parentdir}/settings.json').read())

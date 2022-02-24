@@ -86,5 +86,5 @@ class Spotify:
     
     def previous_song(self):
         return self.socket_sess.request(
-            'post', '/v1/me/player/previous'    
+            'POST', '/v1/me/player/previous'    
         )
