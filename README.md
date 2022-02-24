@@ -1,6 +1,11 @@
 # Spotify-keybinds
 Pause or skip Spotify without having to alt-tab into it.
 
+## features
+* Skip song
+* Skip to previous song
+* Pause & play the song
+
 ## requirements:
 * Python 3.7+
 * python module 'keyboard'; pip install keyboard
