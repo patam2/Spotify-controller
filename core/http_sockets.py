@@ -63,6 +63,8 @@ class SocketClient:
         content_length = self._get_content_length(data)
         while len(recv) < content_length:
             recv += self.socket_sess.recv(4096)
+        
+        self.socket_sess.shutdown(2)
         if b"HTTP/1.1 303" in data:
             return data.split(b"location: ")[1].split(b"\r\nset-cookie")[0]
         try:
