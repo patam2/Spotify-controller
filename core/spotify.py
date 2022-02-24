@@ -23,10 +23,9 @@ class Spotify:
 
         # Get refresh token
         if not self.refresh_token:
-            self.token = self._get_refresh_token()
-            self.token = self._refresh_token()
-        else:
-            self.token = self._refresh_token()
+            self.refresh_token = self._get_refresh_token()
+
+        self.token = self._refresh_token()
         threads.TokenRefresher(self)
 
         # token sess
