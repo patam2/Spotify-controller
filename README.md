@@ -9,5 +9,5 @@ Once you run the spot.py file it should open the settings prompt. You will be as
 
 To enter keybinds press the key(s) and then press escape. 
 
-###showcase
+### showcase
 ![CpR9dsQLer](https://user-images.githubusercontent.com/88111864/155509667-d6441231-6005-4875-8c62-10ebb910224b.gif)
