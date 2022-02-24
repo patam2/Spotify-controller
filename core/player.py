@@ -3,7 +3,6 @@ class SpotifyPlayer:
         self.Spotify = SpotifyClass
 
     def change_playback(self):
-        self.Spotify.create_socket()
         currently_playing = self.Spotify.get_player()
         if isinstance(currently_playing, bool):
             print("Spotify not found")
@@ -13,10 +12,9 @@ class SpotifyPlayer:
         print("Paused track" if not currently_playing else "Resuming track")
 
     def skip_song(self):
-        self.Spotify.create_socket()
         self.Spotify.skip_song()
+        print('Skipped to next song')
 
     def previous_song(self):
-        self.Spotify.create_socket()
         self.Spotify.previous_song()
         print('Skipped to previous song')
