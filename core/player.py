@@ -17,11 +17,14 @@ class SpotifyPlayer:
     def skip_song(self):
         try:
             self.Spotify.skip_song()
+            print('Skipped song')
         except Exception as Error:
             print(Error, 'happened')
 
     def previous_song(self):
         try:
             self.Spotify.previous_song()
+            print('Skipped to previous song')
+
         except Exception as Error:
             print(Error, 'happened')
