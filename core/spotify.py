@@ -61,7 +61,7 @@ class Spotify:
             f"/api/token?grant_type=authorization_code&code={code}&redirect_uri=http://localhost:8888/callback",
         )
 
-    def _refresh_token(self):
+    def _refresh_token(self) -> str:
         return self.account_sess.request(
             "POST",
             f"/api/token?grant_type=refresh_token&refresh_token={self.refresh_token}",
@@ -77,4 +77,9 @@ class Spotify:
     def play_music(self, play: bool):
         return self.socket_sess.request(
             "PUT", "/v1/me/player/%s" % ("play" if play else "pause")
+        )
+    
+    def skip_song(self):
+        return self.socket_sess.request(
+            'POST', 'v1/me/player/next'
         )

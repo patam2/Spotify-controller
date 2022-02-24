@@ -17,7 +17,15 @@ def change_playback():
     except Exception as Error:
         print(Error, 'happened')
 
-print("Press", spot.settings["keybind"], "to pause/play")
+def skip_song():
+    try:
+        spot.skip_song()
+    except Exception as Error:
+        print(Error, 'happened')
 
-keyboard.add_hotkey(spot.settings["keybind"], change_playback, suppress=True)
+
+print("Press", spot.settings["keybind_pause"], "to pause/play")
+print("Press", spot.settings['keybind_skip'], 'to skip the song')
+
+keyboard.add_hotkey(spot.settings["keybind_pause"], change_playback, suppress=True)
 keyboard.wait()
