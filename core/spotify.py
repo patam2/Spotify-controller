@@ -81,5 +81,10 @@ class Spotify:
     
     def skip_song(self):
         return self.socket_sess.request(
-            'POST', 'v1/me/player/next'
+            'POST', '/v1/me/player/next'
+        )
+    
+    def previous_song(self):
+        return self.socket_sess.request(
+            'post', '/v1/me/player/previous'    
         )
